@@ -1,1 +1,9 @@
-
+model,scope,MAE,RMSE,MAPE_%,WAPE_%,MedAPE_%
+Baseline: equipment x distance-bucket median rate/mile,all rows,134.149,630.043,6.044,5.635,3.209
+Baseline: equipment x distance-bucket median rate/mile,clean rows,81.655,112.345,3.715,3.474,3.156
+LightGBM + market_index + quote_signal (rejected),all rows,131.301,630.903,5.844,5.514,2.889
+LightGBM + market_index + quote_signal (rejected),clean rows,78.911,108.059,3.599,3.357,2.848
+"LightGBM, trained on uncleaned labels",all rows,105.85,623.863,4.609,4.446,1.934
+"LightGBM, trained on uncleaned labels",clean rows,53.064,78.165,2.273,2.258,1.902
+"LightGBM FINAL (stable features, cleaned labels)",all rows,97.741,622.453,4.232,4.106,1.611
+"LightGBM FINAL (stable features, cleaned labels)",clean rows,44.848,66.106,1.89,1.908,1.586

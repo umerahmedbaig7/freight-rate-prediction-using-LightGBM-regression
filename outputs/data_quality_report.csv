@@ -1,0 +1,16 @@
+issue,train_test,validation,how_handled
+Rows,48000,12000,-
+Date range,2025-01-01 to 2025-10-31,2025-11-01 to 2025-12-31,Validation is strictly AFTER training -> time-based split + rolling-origin CV
+Missing weight,300,165,Median imputation (train median)
+Missing market_index,374,249,Not used as a model feature (unstable over time)
+Negative weight (sign error),292,145,abs(); magnitudes match the normal range
+"Weight censored at 47,500",1204,301,Added weight_capped flag
+Corrupted target (rate spike x2-5),340,n/a (no labels),Dropped from TRAINING only; metrics reported on all and on clean rows
+Corrupted target (rate drop x0.2-0.5),337,n/a (no labels),Dropped from TRAINING only
+Corrupted-label share of train,1.41%,n/a,-
+Road/straight-line distance ratio > 1.5 (short hauls),214,55,Kept; circuity ratio is a model feature
+Lat/lon not true city coordinates (e.g. Los Angeles lat ~28.6),yes,yes,"Used as consistent per-city coordinates + haversine, not as literal geography"
+Cities in validation never seen in training,-,"8: Allentown, Charlotte, Chicago, Jackson, Knoxville, Laredo, Norfolk, San Diego",Geography/distance features (not city IDs) so new cities still get sensible predictions
+Validation lanes unseen in training,-,736,Same as above; no lane ID features
+market_index mean (distribution shift),1.083,0.927,Level not used; drift would extrapolate badly
+Duplicate load_id,0,0,None found

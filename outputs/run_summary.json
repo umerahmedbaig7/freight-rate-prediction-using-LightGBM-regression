@@ -1,0 +1,163 @@
+{
+  "train_rows": 48000,
+  "validation_rows": 12000,
+  "corrupted_labels_removed_from_training": 677,
+  "model": "LightGBM on log(rate/mile), 3-seed average",
+  "lgb_params": {
+    "objective": "regression",
+    "learning_rate": 0.04,
+    "n_estimators": 500,
+    "num_leaves": 15,
+    "min_child_samples": 100,
+    "subsample": 0.8,
+    "subsample_freq": 1,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1.0,
+    "verbose": -1,
+    "n_jobs": -1
+  },
+  "features": [
+    "distance",
+    "log_dist",
+    "equip",
+    "weight",
+    "weight_capped",
+    "pickup_lat",
+    "pickup_lon",
+    "delivery_lat",
+    "delivery_lon",
+    "hav",
+    "dist_ratio",
+    "dow"
+  ],
+  "excluded_features": [
+    "market_index",
+    "quote_signal"
+  ],
+  "cv_folds": [
+    [
+      "2025-01-01",
+      "2025-06-30",
+      "2025-07-01",
+      "2025-08-31"
+    ],
+    [
+      "2025-01-01",
+      "2025-07-31",
+      "2025-08-01",
+      "2025-09-30"
+    ],
+    [
+      "2025-01-01",
+      "2025-08-31",
+      "2025-09-01",
+      "2025-10-31"
+    ]
+  ],
+  "cv_summary": [
+    {
+      "model": "Baseline: equipment x distance-bucket median rate/mile",
+      "scope": "all rows",
+      "MAE": 134.149,
+      "RMSE": 630.043,
+      "MAPE_%": 6.044,
+      "WAPE_%": 5.635,
+      "MedAPE_%": 3.209
+    },
+    {
+      "model": "Baseline: equipment x distance-bucket median rate/mile",
+      "scope": "clean rows",
+      "MAE": 81.655,
+      "RMSE": 112.345,
+      "MAPE_%": 3.715,
+      "WAPE_%": 3.474,
+      "MedAPE_%": 3.156
+    },
+    {
+      "model": "LightGBM + market_index + quote_signal (rejected)",
+      "scope": "all rows",
+      "MAE": 131.301,
+      "RMSE": 630.903,
+      "MAPE_%": 5.844,
+      "WAPE_%": 5.514,
+      "MedAPE_%": 2.889
+    },
+    {
+      "model": "LightGBM + market_index + quote_signal (rejected)",
+      "scope": "clean rows",
+      "MAE": 78.911,
+      "RMSE": 108.059,
+      "MAPE_%": 3.599,
+      "WAPE_%": 3.357,
+      "MedAPE_%": 2.848
+    },
+    {
+      "model": "LightGBM, trained on uncleaned labels",
+      "scope": "all rows",
+      "MAE": 105.85,
+      "RMSE": 623.863,
+      "MAPE_%": 4.609,
+      "WAPE_%": 4.446,
+      "MedAPE_%": 1.934
+    },
+    {
+      "model": "LightGBM, trained on uncleaned labels",
+      "scope": "clean rows",
+      "MAE": 53.064,
+      "RMSE": 78.165,
+      "MAPE_%": 2.273,
+      "WAPE_%": 2.258,
+      "MedAPE_%": 1.902
+    },
+    {
+      "model": "LightGBM FINAL (stable features, cleaned labels)",
+      "scope": "all rows",
+      "MAE": 97.741,
+      "RMSE": 622.453,
+      "MAPE_%": 4.232,
+      "WAPE_%": 4.106,
+      "MedAPE_%": 1.611
+    },
+    {
+      "model": "LightGBM FINAL (stable features, cleaned labels)",
+      "scope": "clean rows",
+      "MAE": 44.848,
+      "RMSE": 66.106,
+      "MAPE_%": 1.89,
+      "WAPE_%": 1.908,
+      "MedAPE_%": 1.586
+    }
+  ],
+  "signal_instability": {
+    "quote_signal_monthly_corr": {
+      "2025-01": 0.375,
+      "2025-02": 0.368,
+      "2025-03": 0.439,
+      "2025-04": -0.33,
+      "2025-05": -0.306,
+      "2025-06": 0.396,
+      "2025-07": -0.328,
+      "2025-08": -0.01,
+      "2025-09": 0.458,
+      "2025-10": -0.4
+    },
+    "market_index_monthly_mean": {
+      "2025-01": 0.927,
+      "2025-02": 0.996,
+      "2025-03": 1.073,
+      "2025-04": 1.208,
+      "2025-05": 1.301,
+      "2025-06": 1.28,
+      "2025-07": 1.201,
+      "2025-08": 0.981,
+      "2025-09": 0.893,
+      "2025-10": 0.958,
+      "2025-11": 0.919,
+      "2025-12": 0.935
+    }
+  },
+  "december_pred_min": 809.3213893684192,
+  "december_pred_max": 828.6517740558122,
+  "validation_pred_mean": 2353.6335950000002,
+  "scorer_passed": true
+}
