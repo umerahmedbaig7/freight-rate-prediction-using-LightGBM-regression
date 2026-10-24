@@ -154,12 +154,14 @@ Takeaways:
 - Adding `market_index` / `quote_signal` makes the model about $34 worse out-of-time, so they are excluded.
 - "All rows" error stays higher because the corrupted test labels are unpredictable by construction (RMSE on all rows is about $622–$631 for every model).
 
-Figures: `outputs/fig_split_scheme.png`, `outputs/fig_cv_metrics.png`.
+![Split Scheme](outputs/fig_split_scheme.png)
+![CV Metrics](outputs/fig_cv_metrics.png)
 
-### 6. December chart
+### 6. December chart 
 
-`scorer_results/candidate_december.png` is produced by the provided `score.py`. Inputs are fixed at Lexington → Fort Wayne, 360 miles, Dry Van, 32,000 lb; only the date changes. Predictions range from **$809 (Sunday)** to **$829 (Thursday)**.
+![December Freight Rate Variance](scorer_results/candidate_december.png)
 
+- `scorer_results/candidate_december.png` is produced by the provided `score.py`. Inputs are fixed at Lexington → Fort Wayne, 360 miles, Dry Van, 32,000 lb; only the date changes. Predictions range from **$809 (Sunday)** to **$829 (Thursday)**.
 ---
 
 ## Author
